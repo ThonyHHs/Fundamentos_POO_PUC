@@ -11,6 +11,6 @@ public class Apartamento extends Financiamento{
         double taxaMensal = getTaxaJurosAnual() / 12;
         double prazoMeses = getPrazoFinanciamento() * 12;
 
-        return (getValorImovel() * taxaMensal * Math.pow(1+taxaMensal, prazoMeses)) / Math.pow(1+taxaMensal, prazoMeses-1);
+        return (getValorImovel() * taxaMensal) / (1 - Math.pow(1+taxaMensal, prazoMeses*-1));
     }
 }
