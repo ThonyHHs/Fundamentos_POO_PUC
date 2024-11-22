@@ -1,5 +1,6 @@
 package util;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class InterfaceUsuario {
@@ -36,24 +37,34 @@ public class InterfaceUsuario {
 
     //region Verificações de entrada
     private static double getDoubleInput(String inputMsg) {
-        double valor;
+        double valor = -1;
         do {
-            System.out.print(inputMsg);
-            valor = input.nextDouble();
-            if (valor < 0) {
-                System.out.println("Valor inválido! insira um número decimal positivo.");
+            try {
+                System.out.print(inputMsg);
+                valor = input.nextDouble();
+                if (valor < 0) {
+                    System.out.println("Valor inválido! insira um número positivo.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Insira um número decimal!");
+                input.next();
             }
         } while (valor < 0);
         return valor;
     }
-
+    
     private static int getIntInput(String inputMsg) {
-        int valor;
+        int valor = -1;
         do {
-            System.out.print(inputMsg);
-            valor = input.nextInt();
-            if (valor < 0) {
-                System.out.println("Valor inválido! insira um número inteiro positivo.");
+            try {
+                System.out.print(inputMsg);
+                valor = input.nextInt();
+                if (valor < 0) {
+                    System.out.println("Valor inválido! insira um número positivo.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Insira um número inteiro!");
+                input.next();
             }
         } while (valor < 0);
         return valor;

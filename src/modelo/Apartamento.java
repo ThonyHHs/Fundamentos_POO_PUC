@@ -1,16 +1,29 @@
 package modelo;
 
 public class Apartamento extends Financiamento{
+    // Atributos
+    private int numeroVagas;
+    private int numeroAndar;
+
     // Construtor
-    public Apartamento(double valorImovel, int prazoFinanciamento, double taxaJurosAnual) {
+    public Apartamento(double valorImovel, int prazoFinanciamento, double taxaJurosAnual, int numeroVagas, int numeroAndar) {
         super(valorImovel, prazoFinanciamento, taxaJurosAnual);
+        this.numeroVagas = numeroVagas;
+        this.numeroAndar = numeroAndar;
     }
 
     @Override
     public double calcularPagamentoMensal() {
-        double taxaMensal = getTaxaJurosAnual() / 12;
-        double prazoMeses = getPrazoFinanciamento() * 12;
-
-        return (getValorImovel() * taxaMensal) / (1 - Math.pow(1+taxaMensal, -prazoMeses));
+        return (getValorImovel() * getTaxaJurosMensal()) / (1 - Math.pow(1+getTaxaJurosMensal(), -getPrazoFinanciamentoMeses()));
     }
+
+    //region Getters
+    public int getNumeroVagas() {
+        return numeroVagas;
+    }
+
+    public int getNumeroAndar() {
+        return numeroAndar;
+    }
+    //endregion
 }

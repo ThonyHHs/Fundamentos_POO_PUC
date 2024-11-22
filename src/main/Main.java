@@ -3,8 +3,6 @@ package main;
 import java.util.List;
 import java.util.ArrayList;
 import util.InterfaceUsuario;
-// import modelo.Financiamento;
-// import modelo.Casa;
 import modelo.*;
 
 public class Main {
@@ -19,11 +17,11 @@ public class Main {
         double taxaJuros = InterfaceUsuario.getTaxa();
 
         // adiciona o financiamento na lista
-        listaFinanciamentos.add(new Casa(valorImovel, prazoFinanciamento, taxaJuros));
-        listaFinanciamentos.add(new Casa(valorImovel, prazoFinanciamento, taxaJuros));
-        listaFinanciamentos.add(new Apartamento(valorImovel, prazoFinanciamento, taxaJuros));
-        listaFinanciamentos.add(new Apartamento(valorImovel, prazoFinanciamento, taxaJuros));
-        listaFinanciamentos.add(new Terreno(valorImovel, prazoFinanciamento, taxaJuros));
+        listaFinanciamentos.add(new Casa(valorImovel, prazoFinanciamento, taxaJuros, 100, 120));
+        listaFinanciamentos.add(new Casa(valorImovel, prazoFinanciamento, taxaJuros, 100, 120));
+        listaFinanciamentos.add(new Apartamento(valorImovel, prazoFinanciamento, taxaJuros, 2, 5));
+        listaFinanciamentos.add(new Apartamento(valorImovel, prazoFinanciamento, taxaJuros, 2, 5));
+        listaFinanciamentos.add(new Terreno(valorImovel, prazoFinanciamento, taxaJuros, "residencial"));
 
         // percorre a lista imprimindo as informações de cada financiamento
         for (int i = 0; i < listaFinanciamentos.size(); i++) {
