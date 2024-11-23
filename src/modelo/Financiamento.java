@@ -1,6 +1,8 @@
 package modelo;
 
-public abstract class Financiamento {
+import java.io.Serializable;
+
+public abstract class Financiamento implements Serializable{
     // Atributos
     private double valorImovel;
     private int prazoFinanciamentoAnos;
@@ -25,7 +27,19 @@ public abstract class Financiamento {
     public void imprimirDados() {
         System.out.printf("Valor de pagamento mensal: R$ %.2f, valor do imóvel: R$ %.2f, valor do financiamento: R$ %.2f\n", calcularPagamentoMensal(), this.valorImovel, calcularTotalPagamento());
     }
+
+    public String toString() {
+        StringBuilder detalhes = new StringBuilder();
+        // Detalhes sobre o financiamento
+        detalhes.append(String.format("%-23s: %d anos%n", "Prazo do financiamento",getPrazoFinanciamentoAnos()));
+        detalhes.append(String.format("%-23s: %.2f%%%n", "Taxa de juros anual", getTaxaJurosAnual()*100));
+        detalhes.append(String.format("%-23s: R$ %.2f%n", "Valor da mensalidade", calcularPagamentoMensal()));
+        detalhes.append(String.format("%-23s: R$ %.2f%n", "Valor total", calcularTotalPagamento()));
+
+        return detalhes.toString();
+    }
     //endregion
+
 
     //region Getters
     public double getValorImovel() {

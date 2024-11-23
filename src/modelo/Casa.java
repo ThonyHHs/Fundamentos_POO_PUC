@@ -14,6 +14,7 @@ public class Casa extends Financiamento {
         this.areaTerreno = areaTerreno;
     }
 
+    //region Métodos
     private void validarAcrescimo(double valorJuros, double valorAcrescimo) throws AcrescimoMaiorDoQueJurosException {
         if (valorAcrescimo > valorJuros) {
             throw new AcrescimoMaiorDoQueJurosException("Valor do Acrescimo é maior que os juros!");
@@ -32,6 +33,23 @@ public class Casa extends Financiamento {
 
         return super.calcularPagamentoMensal() + valorAcrescimo;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder detalhes = new StringBuilder();
+        // Detalhes sobre o imóvel
+        detalhes.append(String.format("CASA%n"));
+        detalhes.append(String.format("----------------------------------------------%n"));
+        detalhes.append(String.format("%-23s: R$ %.2f%n", "Valor do imóvel", getValorImovel()));
+        detalhes.append(String.format("%-23s: %.2f m^2%n", "Área terreno", this.areaTerreno));
+        detalhes.append(String.format("%-23s: %.2f m^2%n", "Área construida", this.areaConstruida));
+
+        // Detalhes sobre o financiamento
+        detalhes.append(super.toString());
+
+        return detalhes.toString();
+    }
+    //endregion
     
     //region Getters
     public double getAreaConstruida() {
