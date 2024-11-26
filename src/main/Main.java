@@ -34,14 +34,20 @@ public class Main {
             totalImoveis += listaFinanciamentos.get(i).getValorImovel();
             totalFinanciamentos += listaFinanciamentos.get(i).calcularTotalPagamento();
         }
+        System.out.printf("Total de todos os imóveis: R$ %.2f, total de todos os financiamentos: R$ %.2f.\n", totalImoveis, totalFinanciamentos);
 
         // salva as informações em um arquivo
         SalvaFinanciamento.salvaTexto(listaFinanciamentos, "financiamentos.txt");
         SalvaFinanciamento.serializaLista(listaFinanciamentos, "listaFinanciamento.data");
 
-        // SalvaFinanciamento.leTexto("financiamentos.txt");
-        // List<Financiamento> teste = SalvaFinanciamento.desserializaLista("listaFinanciamento.data");
-
-        System.out.printf("Total de todos os imóveis: R$ %.2f, total de todos os financiamentos: R$ %.2f.\n", totalImoveis, totalFinanciamentos);
+        // desserializa os arquivos
+        System.out.println("\nArquivo texto:");
+        SalvaFinanciamento.leTexto("financiamentos.txt");
+        List<Financiamento> teste = SalvaFinanciamento.desserializaLista("listaFinanciamento.data");
+        
+        System.out.println("Arquivo data:");
+        for (Financiamento financiamento : teste) {
+            financiamento.imprimirDados();
+        }
     }
 }
