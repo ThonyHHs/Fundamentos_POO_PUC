@@ -19,10 +19,9 @@ public class Main {
         int prazoFinanciamento = InterfaceUsuario.getPrazoFinancimento();
         double taxaJuros = InterfaceUsuario.getTaxa();
 
-
         // adiciona o financiamentos na lista
         listaFinanciamentos.add(new Casa(valorImovel, prazoFinanciamento, taxaJuros, 230, 600));
-        listaFinanciamentos.add(new Casa(valorImovel, prazoFinanciamento, taxaJuros, 248, 480));
+        listaFinanciamentos.add(new Casa(500000, 40, 0.001, 248, 480)); // levanta AcrescimoMaiorDoQueJurosException
         listaFinanciamentos.add(new Apartamento(valorImovel, prazoFinanciamento, taxaJuros, 1, 5));
         listaFinanciamentos.add(new Apartamento(valorImovel, prazoFinanciamento, taxaJuros, 2, 10));
         listaFinanciamentos.add(new Terreno(valorImovel, prazoFinanciamento, taxaJuros, Zonas.RESIDENCIAL));
@@ -43,10 +42,10 @@ public class Main {
         // desserializa os arquivos
         System.out.println("\nArquivo texto:");
         SalvaFinanciamento.leTexto("financiamentos.txt");
-        List<Financiamento> teste = SalvaFinanciamento.desserializaLista("listaFinanciamento.data");
-        
+
+        List<Financiamento> listaDesserializada = SalvaFinanciamento.desserializaLista("listaFinanciamento.data");
         System.out.println("Arquivo data:");
-        for (Financiamento financiamento : teste) {
+        for (Financiamento financiamento : listaDesserializada) {
             financiamento.imprimirDados();
         }
     }
